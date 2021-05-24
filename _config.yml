@@ -6,15 +6,15 @@
 # --- Required options --- #
 
 # Name of website
-title: My Website
+title: NaughtyWorms - HCMUS CTF 2021 Elimination Round WriteUp 
 
 # Your name to show in the footer
-author: Some Person
+author: NaughtyWorms Team
 
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "aboutme"
+  About Me: "about our team"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
