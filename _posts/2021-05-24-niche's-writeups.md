@@ -70,7 +70,6 @@ Vâng, _old buddy **gets**_, một hàm tuyệt vời của C được mô tả 
 
 > #### DESCRIPTION
        > _ Never use this function. _
-
        > gets() reads a line from stdin into the buffer pointed to by s until either a terminating newline or EOF, which it replaces with a null byte ('\0').  No check for buffer overrun is performed.
 
 Nhiệm vụ của ta là overflow được _[ebp-0xc]_ bằng với giá trị _0x66a44_:
@@ -97,6 +96,7 @@ Nhiệm vụ của ta là overflow được _[ebp-0xc]_ bằng với giá trị 
    0x08048592 <+97>:	leave  
    0x08048593 <+98>:	ret    
 ~~~
+
 
 > Flag: **HCMUS-CTF{little_endian_is_fun}**
 
@@ -170,6 +170,7 @@ Dump of assembler code for function getFlag:
    0x08048530 <+42>:	ret    
 End of assembler dump.
 ~~~
+
 
 
 > Flag: **HCMUS-CTF{overwrite_all_the_things}**
