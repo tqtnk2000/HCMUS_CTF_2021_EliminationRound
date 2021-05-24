@@ -1,8 +1,8 @@
 ---
 layout: post
 title: niche's writeups
-subtitle: Hello guys, it's a niche writeup
-tags: [pwn, misc, forensics, reverse]
+subtitle: Hello guys, It's all niche.
+tags: [pwn, misc]
 comments: true
 ---
 
@@ -64,7 +64,7 @@ python3 -c "print('A'*100)" | nc server.quenmattiuroi portgiday
 ### bank2
 author: xikhud, 100 points
 
-Đọc assembly của bài này ta thấy chương trình nhận vào input của người dùng. Và hàm nhận vào input là hàm *gets()*. 
+Đọc assembly của bài này ta thấy chương trình nhận vào input của người dùng. Và hàm nhận vào input là hàm **gets()**. 
 
 Vâng, _old buddy **gets**_, một hàm tuyệt vời của C được mô tả trên man page như sau:
 
@@ -147,7 +147,7 @@ File ./src/bank3.c:
 18:	int main(int, char **);
 ~~~
 
-Một hàm *getFlag()* ở ngay đây, và lần này ta chỉ việc overflow giá trị trả về với địa chỉ của hàm:
+Một hàm **getFlag()** ở ngay đây, và lần này ta chỉ việc overflow giá trị trả về với địa chỉ của hàm:
 
 ~~~
 gdb-peda$ pdisas getFlag
@@ -182,7 +182,7 @@ Tương tự bank3, bài này cũng là bài toán overflow return address.
 
 Tuy nhiên, ở bài này ta thấy ASLR được bật, và tác giả đã đủ nhân hậu để leak cho ta một địa chỉ. 
 
-Nhiệm vụ của ta bây giờ chỉ là tính địa chỉ tương đối giữa địa chỉ được leak ra và địa chỉ của hàm mục tiêu (hàm *arsenal()*).
+Nhiệm vụ của ta bây giờ chỉ là tính địa chỉ tương đối giữa địa chỉ được leak ra và địa chỉ của hàm mục tiêu (hàm **arsenal()**).
 
 > _Xin lỗi bạn đọc, nhưng tôi đã quá lười để viết writeup_ ._.
 
@@ -220,13 +220,13 @@ void getFlag(void)
 }
 ```
 
-Sau khi xem xét được 2 hàm thì ta thấy mục đích vẫn là đưa chương trình trở về hàm *getFlag()*. Tuy nhiên, để ý thì hàm này kiểm tra xem 2 biến _o1_ và _o2_ có bằng 0 không, và 2 biến này được lưu trên vùng nhớ của chương trình.
+Sau khi xem xét được 2 hàm thì ta thấy mục đích vẫn là đưa chương trình trở về hàm **getFlag()**. Tuy nhiên, để ý thì hàm này kiểm tra xem 2 biến _o1_ và _o2_ có bằng 0 không, và 2 biến này được lưu trên vùng nhớ của chương trình.
 
 Hmm?!?
 
-Nhưng ta đâu nhất thiết phải trở về đầu hàm  *getFlag()* đâu nhỉ? Nếu chúng ta ăn gian bớt thì sao?? 
+Nhưng ta đâu nhất thiết phải trở về đầu hàm **getFlag()** đâu nhỉ? Nếu chúng ta ăn gian bớt thì sao?? 
 
-Tuy nhiên, đoạn code ở trên không hề phản ánh rõ cái gì đang ở bên dưới máy tính, và ta dĩ nhiên không thể nhảy tùy tiện về dòng code *system("cat flag.txt");* được
+Tuy nhiên, đoạn code ở trên không hề phản ánh rõ cái gì đang ở bên dưới máy tính, và ta dĩ nhiên không thể nhảy tùy tiện về dòng code **system("cat flag.txt");** được
 
 ~~~
    0x08048906 <+0>:		push   ebp
@@ -262,18 +262,18 @@ Tuy nhiên, đoạn code ở trên không hề phản ánh rõ cái gì đang �
 
 Xem xét kĩ thì ta thấy hàm system nhận vào chỉ 1 tham số, chính là chuỗi '_cat flag.txt_', tuy nhiên chuỗi này được lấy bằng cách tính vị trí tương đối từ thanh ghi $eax.
 
-Nếu lần lên trên ta sẽ thấy *$eax* đã được gán bằng giá trị 0x0848912 sau lời gọi hàm <__x86.get_pc_thunk.ax> (hàm này trả về giá trị của thanh ghi pc, chính là địa chỉ lệnh cần thực hiện tiếp theo), và sau đó được tăng thêm 0x916ee đơn vị. Vậy thanh ghi *$eax* bây giờ có giá trị là 0x080da000. 
+Nếu lần lên trên ta sẽ thấy **$eax** đã được gán bằng giá trị 0x0848912 sau lời gọi hàm <__x86.get_pc_thunk.ax> (hàm này trả về giá trị của thanh ghi pc, chính là địa chỉ lệnh cần thực hiện tiếp theo), và sau đó được tăng thêm 0x916ee đơn vị. Vậy thanh ghi **$eax** bây giờ có giá trị là 0x080da000. 
 
 Vậy làm sao để gán giá trị đó cho eax trước khi trở về?
 
-ROPgadget hân hạnh tài trợ chương trình này! Tìm một gadget "pop eax; ret" hay tương tự và push thêm giá trị *$eax* mong muốn, sau đó trở về địa chỉ ngay trước khi lời gọi system được thực hiện và ta được flag!!
+ROPgadget hân hạnh tài trợ chương trình này! Tìm một gadget "pop eax; ret" hay tương tự và push thêm giá trị **$eax** mong muốn, sau đó trở về địa chỉ ngay trước khi lời gọi system được thực hiện và ta được flag!!
 
 > Flag: **HCMUS-CTF{trungdeptrai}**
 
 ### bank5
 author: xikhud, 200 points
 
-Tiếp tục là một bài ROP, và lần này không có bất kỳ hàm *getFlag()* nào T.T
+Tiếp tục là một bài ROP, và lần này không có bất kỳ hàm **getFlag()** nào T.T
 
 Tuy nhiênnnnn, ta chỉ cần ROP là đủ để chiếm shell của server, và lần này ta sẽ gọi thẳng syscall để boom luôn cái server.
 
@@ -288,10 +288,31 @@ Lần này mình xin phép nhường bạn đọc và không giải thích gì t
 ### bank6
 author: xikhud, 200 points
 
-Lần này là một bài giới hạn input nhận vào (_bye bye gets, welcome to scanf_). Việc giới hạn này làm ta không thể overflow được giá trị trả về, nhưng 
+Lần này là một bài giới hạn input nhận vào (_bye bye gets, welcome to scanf_). Việc giới hạn này làm ta không thể overflow được giá trị trả về, nhưng ta lại được một stack khá lớn (1024 ký tự).
 
+Chạy thử chương trình thì ta thấy như sau:
+~~~
+[+] Welcome
+[+] Here is a gift: 0xff86401c
+[+] Please enter your name:
+~~~
+
+Một địa chỉ???
+
+Checksec kiểm tra thấy NX không bật. Và kiểm tra lại thì ta thấy stack is executable. Đương nhiên cái địa chỉ kia sẽ có vai trò trong việc xác định stack ở đâu.
+
+Tuy ta không overflow được return address, nhưng ta có thể khiến nó trở về được địa chỉ ta mong muốn. O.O
+
+Nhận thấy hàm này return đến 2 lần, và lần đầu không được thì ta xem lần 2 :>
+
+Mỗi lời gọi trở về hàm đều kết thúc bằng "leave; ret" và xem xét flow của chương trình, ta nhận thấy nếu ta overflow tới 4 bytes của ebp, ta thật sự có thể khiến nó trở về đâu đó trên stack của ta. 
+
+Quan sát trên stack ta thấy giá trị return address luôn có dạng 0x??????00 và 3 bytes đầu của nó khá gần với
+địa chỉ của stack.
+
+Tới đây ta có thể bruteforce hoặc tính toán một cách "gần đúng nhất" và chờ kết quả thôi.
+
+> Khá hên cho mình là bem ngay lần đầu Ლ(=ↀωↀ=)ლ
 
 > Flag: **HCMUS-CTF{0ff_by_on3}**
-
-
 
