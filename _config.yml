@@ -14,7 +14,7 @@ author: NaughtyWorms Team
 # --- List of links in the navigation bar --- #
 
 navbar-links:
-  About Me: "about our team"
+  About Us: "aboutme"
   Resources:
     - Beautiful Jekyll: "https://beautifuljekyll.com"
     - Learn markdown: "https://www.markdowntutorial.com/"
