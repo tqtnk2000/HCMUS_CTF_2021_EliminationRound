@@ -69,12 +69,9 @@ author: xikhud, 100 points
 Vâng, _old buddy **gets**_, một hàm tuyệt vời của C được mô tả trên man page như sau:
 
 > #### DESCRIPTION
-       _ Never use this function. _
+       > _ Never use this function. _
 
-       gets() reads a line from stdin into the buffer pointed to by s
-       until either a terminating newline or EOF, which it replaces with
-       a null byte ('\0').  No check for buffer overrun is performed
-       (see BUGS below).
+       > gets() reads a line from stdin into the buffer pointed to by s until either a terminating newline or EOF, which it replaces with a null byte ('\0').  No check for buffer overrun is performed.
 
 Nhiệm vụ của ta là overflow được _[ebp-0xc]_ bằng với giá trị _0x66a44_:
 
@@ -275,10 +272,26 @@ ROPgadget hân hạnh tài trợ chương trình này! Tìm một gadget "pop ea
 
 ### bank5
 author: xikhud, 200 points
+
+Tiếp tục là một bài ROP, và lần này không có bất kỳ hàm *getFlag()* nào T.T
+
+Tuy nhiênnnnn, ta chỉ cần ROP là đủ để chiếm shell của server, và lần này ta sẽ gọi thẳng syscall để boom luôn cái server.
+
+Đơn giản chỉ cần tìm đủ những gadget cần thiết để chỉnh các thanh ghi và gọi hàm theo đúng như trong sách giáo khoa là được. 
+
+Lần này mình xin phép nhường bạn đọc và không giải thích gì thêm ._.
+
+> Hint: ở đây ta có thể gọi syscall execve('/bin/sh') và tùy biến các giá trị thanh ghi cho đúng với yêu cầu 
+
 > Flag: **HHCMUS-CTF{rop_and_shellcode}**
 
 ### bank6
 author: xikhud, 200 points
+
+Lần này là một bài giới hạn input nhận vào (_bye bye gets, welcome to scanf_). Việc giới hạn này làm ta không thể overflow được giá trị trả về, nhưng 
+
+
 > Flag: **HCMUS-CTF{0ff_by_on3}**
+
 
 
