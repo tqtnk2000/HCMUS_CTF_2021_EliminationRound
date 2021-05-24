@@ -1,7 +1,7 @@
 ---
 layout: post
 title: niche's writeups
-subtitle: Hello guys, It's all niche.
+subtitle: Hello guys, it's a niche writeup
 tags: [pwn, misc, forensics, reverse]
 comments: true
 ---
