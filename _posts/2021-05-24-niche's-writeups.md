@@ -341,6 +341,7 @@ Password: ' OR '{character}' = SUBSTR((SELECT name FROM sqlite_master WHERE type
 
 > Flag: **HCMUS-CTF{easY_sql_1nj3ctIon}**
 
+# Forensics
 ### NiceEars
 **Solved: phuducdoan**
 
@@ -384,6 +385,7 @@ print(evidences[1])
 
 > Flag: **HCMUS-CTF{at_least_I_hope_you_can_code_a_bit}**
 
+# Crypto
 ### Permutation
 **Solved: phuducdoan**
 
