@@ -8,7 +8,6 @@ comments: true
 
 # Web
 ### EasyLogin
-**Solved: phuducdoan**
 
 &emsp;Login with admin account with easy SQL Injection. For example: **username: admin' --** ==> Don't have any clue with Mario Image =)))
 
@@ -31,7 +30,6 @@ Password: ' OR '{character}' = SUBSTR((SELECT name FROM sqlite_master WHERE type
 
 # Forensics
 ### NiceEars
-**Solved: phuducdoan**
 
 &emsp;Open the audio file with Sonic Visualizer, add Spectrogram layer, adjust some params to see text inside this layer clearly. We have password: **M0nK3y_doNkeY**
 
@@ -40,7 +38,6 @@ Password: ' OR '{character}' = SUBSTR((SELECT name FROM sqlite_master WHERE type
 > Flag: **HCMUS-CTF{Just_give_you_some_points_from_audio_stuff}**
 
 ### TestYourCmd
-**Solved: phuducdoan**
 
 &emsp;Modify master image header into PNG header. After that, we could open it and get a hint: 
 
@@ -75,7 +72,6 @@ print(evidences[1])
 
 # Crypto
 ### Permutation
-**Solved: phuducdoan**
 
 &emsp;Build a graph with 512 vertexes, edge from i to p[i]. Because p is a permutation, so the graph will exist some cycles. Assume that this graph has M cycles with lengths are k[1], k[2], ..., k[M] respectively. Therefore, p<sup>X</sup> = p when X = LCM(k[1], k[2], ..., k[M]) (Least Common Multiple).
 
