@@ -263,7 +263,7 @@ Tuy nhiên, đoạn code ở trên không hề phản ánh rõ cái gì đang �
 
 Xem xét kĩ thì ta thấy hàm system nhận vào chỉ 1 tham số, chính là chuỗi '_cat flag.txt_', tuy nhiên chuỗi này được lấy bằng cách tính vị trí tương đối từ thanh ghi **$eax**.
 
-Nếu lần lên trên ta sẽ thấy **$eax** đã được gán bằng giá trị 0x0848912 sau lời gọi hàm **<__x86.get_pc_thunk.ax>** (hàm này trả về giá trị của thanh ghi **pc**, chính là địa chỉ lệnh cần thực hiện tiếp theo), và sau đó được tăng thêm 0x916ee đơn vị. Vậy thanh ghi **$eax** bây giờ có giá trị là 0x080da000. 
+Nếu lần lên trên ta sẽ thấy **$eax** đã được gán bằng giá trị 0x0848912 sau lời gọi hàm **<\_\_x86.get\_pc\_thunk.ax>** (hàm này trả về giá trị của thanh ghi **pc**, chính là địa chỉ lệnh cần thực hiện tiếp theo), và sau đó được tăng thêm 0x916ee đơn vị. Vậy thanh ghi **$eax** bây giờ có giá trị là 0x080da000. 
 
 Vậy làm sao để gán giá trị đó cho eax trước khi trở về?
 
