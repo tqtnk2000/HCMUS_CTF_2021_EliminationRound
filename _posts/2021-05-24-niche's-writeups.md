@@ -2,7 +2,7 @@
 layout: post
 title: niche's writeups
 subtitle: Hello guys, it's niche.
-tags: [pwn, misc]
+tags: [pwn, misc, reverse, forensics]
 comments: true
 ---
 
@@ -316,5 +316,95 @@ Tới đây ta có thể bruteforce hoặc tính toán một cách "gần đúng
 > Khá hên cho mình là bem ngay lần đầu Ლ(=ↀωↀ=)ლ
 
 > Flag: **HCMUS-CTF{0ff_by_on3}**
+
+# MISC
+### dodge
+_50 points_
+
+Sau khi ssh vào server, ta được một restricted shell.
+
+Mình đã nghịch thử một ít lệnh và thấy cái shell này chỉ cho ta dùng một số lệnh nhất định như **ls**, **echo**, và trong đó không có lệnh **cat**.
+
+Tuy nhiên, ta vẫn có thể đọc file mà không cần lệnh **cat**:
+
+~~~
+echo `<flag.txt`
+~~~
+
+
+> Flag: **HCMUS-CTF{You_know_some_command_line_stuff}**
+
+
+### strangerthing
+_50 points_
+
+Bài này flag được chia làm 3 mảnh và ta cần đọc được chúng để ghép lại với nhau.
+
+> cat * --> ta đọc được 2 mảnh đầu tiên (mình đã né việc đọc flag2.txt với dấu - ở trong filename (｡•̀ᴗ-)✧ )
+
+Mảnh cuối cùng của flag được giấu trong thư mục secret với rất nhiều thư mục con, ta dùng lệnh find để tìm flag3 khi biết trong nội dung của nó phải có ký tự '}'
+
+> grep -Ril "}" /
+
+
+> Flag: **HCMUS-CTF{this_is_used_to_test_linux_command_line}**
+
+
+### escapeme
+_100 points 
+
+Một chiếc shell có user là **ctf** và một file _flag.txt_ chỉ có **root** mới được đọc.
+
+Có thể thấy mục tiêu của challenge này là ta phải chiếm quyền **root**. Sau khi đọc một số writeup trên mạng, mình thấy lệnh **sudo -l** có thể liệt kê các lệnh mà **root** và **user** đều có quyền.
+
+Và ta thấy **python3** (つ✧ω✧)つ	
+
+Mình thử chạy một lệnh python3 đơn giản để lấy shell và chạy nó bằng sudo:
+
+~~~
+sudo python3 -c "import os; os.system('/bin/bash')"
+~~~ 
+
+
+> Flag: **HCMUS-CTF{privilege_escalation_is_fun!!!}**
+
+# FORENSICS
+### saveme
+
+_50 points_
+
+Bài này cho ta một file raw, check file thì không nhận diện được đây là file gì cả.
+
+Mình mở hexdump của file lên và nhận thấy các byte đầu là signature của file png nhưng đã bị đảo.
+
+Viết code python để đảo các byte này cho đúng:
+
+
+```python
+file = open('saveme','rb')
+file2 = open('output','wb')
+byte = file.read(1)
+byte2 = file.read(1)
+while byte:
+    while byte2:
+        file2.write(byte2)
+        file2.write(byte)
+        byte = file.read(1)
+        byte2 = file.read(1)
+```
+Sau khi có được file output, mình dùng binwalk để extract các file ra và lấy được flag.
+
+> Flag: **HCMUS-CTF{You_Know_How_To_Manipulate_Images_1324587}**
+
+
+# REVERSE
+### faded
+_100 points_
+
+Dựa vào gợi ý của đề thì mình biết được file elf này được build từ Pyinstaller. Và mình dùng pyi-archive_viewer để kiểm tra file. Sau đó mình extract hàm chính của file này ra và grep được flag.
+
+
+> Flag: **HCMUS-CTF{Python_is_fun_somehow}**
+
 
 
