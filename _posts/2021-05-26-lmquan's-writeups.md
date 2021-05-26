@@ -148,8 +148,8 @@ Crack that hashed to plaintext. The base64 of the plaintext is the password to o
 The format of the hash is $6$rounds={rounds}${salt}${checksum} and it's SHA512  
 *==>* Use hashcat tool with rockyou wordlist to crack that file
 
-![hash1](/assets/img/hash1.png){: .mx-auto.d-block :}
-![hash2](/assets/img/hash2.png){: .mx-auto.d-block :}
+![hash1](../assets/img/hash1.png){: .mx-auto.d-block :}
+![hash2](../assets/img/hash2.png){: .mx-auto.d-block :}
 
 ```python
 base64.b64decode(b'playboy123').decode()
@@ -165,7 +165,7 @@ In the phase2, you should crack id_rsa file to unzip flag.zip containing flag
 Crack it to find the passphrase. The password to opened the zip file is the base64 of that passphrase.
 ```
 *==>* Use John the Ripper to crack that file with wordlist rockyou!
-![john](/assets/img/john.png){: .mx-auto.d-block :}
+![john](../assets/img/john.png){: .mx-auto.d-block :}
 
 ```
 ==> Get the key: felecity 
