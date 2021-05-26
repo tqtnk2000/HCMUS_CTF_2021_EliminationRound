@@ -1,8 +1,10 @@
 ---
 layout: post
-title: Write-up for HCMUS-CTF Warm-Up Stage - CRYPTOGRAPHY
+title: lmquan's writeups
 ---
-### SanityCheck
+### SanityCheck  
+
+
 ```
 MQZGQ3K2PFBDMYTONB4USR3YNFQUGQTJLEZUU2CJI5UGUSKHPBUWCR2VM5RW26DZLJTW6S2WKZBGCU2FLF2FKRLEKRSTA4DZLAZDK3DDNQ4VAZKXGV3WKR2OGJMVQ2DZLJLDS4LDNZWHOWLOOB4VQMTENFMDGVTXMVWWQ3KYGNBG4YZRHB4U2RCJPBTFCPJ5  
 ```
@@ -258,10 +260,10 @@ $$m_p = c^d mod(p)$$
 $$m_q = m_p * c^k mod(q)$$
 with $$k=c^{\left\lfloor{\log_c^d}\right\rfloor}$$
 
-So when choosing $$c_2 = c_1^2$$
+So when choosing $$c_2 = c_1^2$$:  
 $$k_2 = c_2^{\left\lfloor{\log_{c_2}^d}\right\rfloor}=c_1^{2\left\lfloor{\log_{c_1^2}^d}\right\rfloor} = c_1^{\left\lfloor{\log_{c_1}^d}\right\rfloor} = k1$$  
-After feeding to *crt()*, we get:
 
+After feeding to *crt()*, we get:  
 $$x = (a_0 * M_0 * y_0 + a_1 * M_1 * y_1) mod(M)$$
 $$= (m_p * q * q^{-1} mod(p) + m_q * p * p^{-1}mod(q)) mod(pq)$$
 $$= (c^d mod(p))(qq^{-1}mod(p) + c^kmod(q)pp^{-1}mod(q))mod(pq)$$
