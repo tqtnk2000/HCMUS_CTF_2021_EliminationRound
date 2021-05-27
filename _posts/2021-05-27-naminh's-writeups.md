@@ -1,6 +1,6 @@
 ---
 layout: post
-title: HCMUS-CTF-Write-up-Reversing
+title: naminh's writeups
 ---
 
 ### AndroidRev
