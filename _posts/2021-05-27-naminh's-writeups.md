@@ -7,7 +7,7 @@ title: naminh's writeups
 
 We open file in jadx to decompile this file. 
 
-![TreeFolder](/assets/img/Capture.PNG)
+![TreeFolder](../assets/img/Capture.PNG)
 
 Open MainActivity we get this code.
 
